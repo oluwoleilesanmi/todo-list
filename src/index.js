@@ -1,1 +1,3 @@
-alert("testing webpack");
+import {taskDisplay} from "./js/view/todoDisplay"
+
+console.log(taskDisplay("jagi"))
