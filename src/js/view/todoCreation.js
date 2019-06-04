@@ -1,5 +1,5 @@
 
-let todoCreation = (todo) => {
+let todoCreation = () => {
   return `<form>
               <div>
                 <label>Title:</label>
@@ -7,7 +7,7 @@ let todoCreation = (todo) => {
               </div>
               <div>
                 <label>Description:</label>
-                <textarea>${todo.description}</textarea>
+                <textarea></textarea>
               </div>
               <div>
                 <label for="date">Due:</label>
@@ -16,9 +16,9 @@ let todoCreation = (todo) => {
               <div>
                 <label>Priority:</label>
                 <select id="todo-priority">
-                  <option value="1" ${todo.priority === '1' ? 'selected' : ''}>Important</option>
-                  <option value="2" ${todo.priority === '2' ? 'selected' : ''}>Sliglity Important</option>
-                  <option value="3" ${todo.priority === '3' ? 'selected' : ''}>Not Important</option>
+                  <option value="1">Important</option>
+                  <option value="2">Sliglity Important</option>
+                  <option value="3">Not Important</option>
                 </select>
               </div>
               <button>Update todo</button>
