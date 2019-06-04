@@ -1,3 +1,5 @@
-import {taskDisplay} from "./js/view/todoDisplay"
+import {todoDisplay} from "./js/view/todoDisplay"
+import {addProjectListener} from "./js/project/projectEvents"
 
-console.log(taskDisplay("jagi"))
+
+addProjectListener()

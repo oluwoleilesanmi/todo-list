@@ -5,6 +5,7 @@ let todoDisplay = (todo) => {
             <p>${todo.description}</p>
             <time>Date-due: ${todo.dueDate}</time>
             <span>Priority: ${todo.priority}</span>
+            <button>Delete</button>
           </li>`
 }
  
