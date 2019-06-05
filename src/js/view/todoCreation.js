@@ -21,7 +21,7 @@ let todoCreation = () => {
                   <option value="3">Not Important</option>
                 </select>
               </div>
-              <button>Update todo</button>
+              <button class= {}>Update todo</button>
           </form>`
 }
 export {todoCreation}

@@ -9,4 +9,7 @@ let projectTodos = () => {
   let getAllTodos = () => {
     return allTodos;
   };
+  return {storeTodo, getAllTodos}
 };
+
+export {projectTodos}

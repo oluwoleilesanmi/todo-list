@@ -10,3 +10,5 @@ let uuid = () => {
 	}
 	return uuid;
 }
+
+export { uuid }
