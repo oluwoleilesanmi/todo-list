@@ -4,7 +4,8 @@ const todo = (id, title, description, dueDate, priority) => {
     title: title,
     description: description,
     dueDate: dueDate,
-    priority: priority
+    priority: priority,
+    done: false
   };
 };
 

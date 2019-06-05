@@ -15,7 +15,7 @@ const defaultView = () => {
   todos.innerHTML = todoDisplay("test")
 }
 
-const findTodo = (e) => {
+const findTodoIndex = (e) => {
     let id = e.target.parentNode.getAttribute('todo-id');
     for(let i=0, map; i<database.length; i++){
         map = database[i][1]
@@ -24,7 +24,7 @@ const findTodo = (e) => {
 }
 
 const deleteTodo = (e) => {
-    let todo = findTodo(e),
+    let todo = findTodoIndex(e),
         todoIndex = database.indexOf(todo);
     database.splice(todoIndex, 1);
 }
@@ -38,7 +38,35 @@ const bindDelEvent = () => {
   }
 }
 
+const bindToggleEvent = () => {
+  console.log("io")
+    if(document.getElementsByClassName("toggle")){
+      let arrToggle = document.getElementsByClassName("toggle");
+      Array.from(arrToggle).forEach(toggleBtn => {
+        toggleBtn.addEventListener('click', toggleTodo);
+    });
+  }
+}
+
+const toggleTodo = (e) => {
+    let todo = findTodo(e);
+    todo.done = !todo.done;
+}
+
+const findTodo = (e) => {
+    let todo, 
+      id = e.target.parentNode.getAttribute('todo-id');
+    for(let i=0, map; i<database.length; i++){
+      map = database[i][1]
+      if (map.id === id) { todo = map;}
+    }
+    return todo;
+}
+
+
+
 defaultView()
 addProjectListener()
 addTodoListener()
 bindDelEvent()
+bindToggleEvent()
