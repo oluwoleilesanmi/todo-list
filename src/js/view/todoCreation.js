@@ -1,17 +1,17 @@
 
-let todoCreation = () => {
-  return `<form>
+let todoCreation = (todo) => {
+  return `<form todo-id=${todo.id} id="form">
               <div>
                 <label>Title:</label>
-                <input type="text" class="title">
+                <input type="text" id="title">
               </div>
               <div>
                 <label>Description:</label>
-                <textarea class="description"></textarea>
+                <textarea id="description"></textarea>
               </div>
               <div>
                 <label for="date">Due:</label>
-                <input type="datetime-local" class="due">
+                <input type="datetime-local" id="due">
               </div>
               <div>
                 <label>Priority:</label>
