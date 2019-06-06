@@ -8,6 +8,19 @@ import {todo} from "./js/todo/todo"
 
 let database = projectTodos()
 
+const addTodoToDb = (id, title, description, dueDate, priority, projectName) => {
+    let index = 0,
+      todo = todo(id, title[index].value, description[index].value, dueDate[index].value, priority[index].value);
+    database.storeTodo(projectName, todo)
+}
+
+let getInputData = () => {
+     var title = document.getElementsByClassName('title');
+     var description = document.getElementsByClassName('description');  
+     var dueDate = document.getElementsByClassName('due');  
+     var priority = document.getElementsByClassName('priority');  
+  }
+
 const defaultView = () => {
   let projects = document.querySelector(".projects")
   let todos = document.querySelector(".todos")
@@ -39,7 +52,6 @@ const bindDelEvent = () => {
 }
 
 const bindToggleEvent = () => {
-  console.log("io")
     if(document.getElementsByClassName("toggle")){
       let arrToggle = document.getElementsByClassName("toggle");
       Array.from(arrToggle).forEach(toggleBtn => {
