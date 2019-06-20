@@ -11,4 +11,4 @@ let uuid = () => {
 	return uuid;
 }
 
-export { uuid }
+export {uuid}
