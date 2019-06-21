@@ -1,6 +1,4 @@
-import uuid from "./utility"
-
-describe("Utility", () => {
+describe("uuid", () => {
   test("testing", () => {
     expect("one").toBe("one");
   });

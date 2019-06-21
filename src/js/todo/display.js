@@ -1,5 +1,5 @@
 
-let todoDisplay = (todo) => {
+let display = (todo) => {
   let ticked = '', dim = '';
   if (todo.done === true){
     ticked = "checked";
@@ -14,6 +14,6 @@ let todoDisplay = (todo) => {
           </li>`
 }
  
-export {todoDisplay}
+export { display }
 
   

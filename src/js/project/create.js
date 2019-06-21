@@ -1,7 +1,7 @@
-const projectCreation = () => {
+const create = () => {
   return `<input type="text"/>
           <button>Create!</button>`;
 }
 
-export {projectCreation}
+export { create }
 

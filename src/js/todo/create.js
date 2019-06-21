@@ -1,5 +1,5 @@
 
-let todoCreation = (todo) => {
+let create = (todo) => {
   return `<form todo-id=${todo.id} id="form">
               <div>
                 <label>Title:</label>
@@ -24,4 +24,4 @@ let todoCreation = (todo) => {
               <button class="update">Update todo</button>
           </form>`
 }
-export {todoCreation}
+export {create}

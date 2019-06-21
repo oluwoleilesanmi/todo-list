@@ -1,11 +1,11 @@
-import { todoDisplay } from "./js/view/todoDisplay"
-import { projectDisplay } from "./js/view/projectDisplay"
-import { addProjectListener } from "./js/project/projectEvents"
-import { addTodoListener } from "./js/todo/todoEvents"
-import { projectTodos } from "./js/project/projectTodos"
-import { uuid } from "./js/util/utility"
-import { todo } from "./js/todo/todo"
-import { todoCreation } from "./js/view/todoCreation";
+import { todoDisplay } from "./js/todo/display"
+import { projectDisplay } from "./js/project/display"
+import { addProjectListener } from "./js/project/event"
+import { addTodoListener } from "./js/todo/event"
+import { projectTodos } from "./js/project/store"
+import { uuid } from "./js/util/uuid"
+import { todo } from "./js/todo/object"
+import { todoCreation } from "./js/todo/create"
 
 let database = projectTodos()
 
