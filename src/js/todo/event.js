@@ -4,7 +4,7 @@ let listener = () => {
   let btn = document.querySelector(".todo"), 
     add = document.querySelector(".add");
   btn.addEventListener("click", (e) => {
-    add.innerHTML = create();
+    add.innerHTML = create({});
   });
 }
 

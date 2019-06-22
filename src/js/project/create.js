@@ -1,6 +1,6 @@
 const create = () => {
-  return `<input type="text"/>
-          <button>Create!</button>`;
+  return `<input type="text" class="input"/>
+          <button class="create">Create!</button>`;
 }
 
 export { create }

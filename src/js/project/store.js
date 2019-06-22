@@ -10,4 +10,4 @@ let storage = () => {
   return {store}
 };
 
-export {storage}
+export { storage }
