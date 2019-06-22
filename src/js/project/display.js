@@ -1,6 +1,5 @@
-const display = (project) => {
-  return `<li>${project.name}</li>`
+const display = name => {
+  return `<li>${name}</li>`;
+};
 
-}
-
-export { display }
+export { display };

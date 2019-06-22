@@ -9,6 +9,7 @@ import * as tc from "./js/todo/create";
 
 let database = ps.storage().store("project-todo");
 let pdatabase = ps.storage().store("project");
+let reset = "";
 
 const addTodoToDb = (
   id,
@@ -140,8 +141,18 @@ const listener = () => {
     cbtn.addEventListener("click", e => {
       let text = document.querySelector(".input").value;
       pdatabase.push(text);
+      render(pdatabase, document.querySelector(".projects"), add);
     });
   });
+};
+
+const render = (arr, ul, div) => {
+  let li = reset;
+  arr.forEach(e => {
+    li += pd.display(e);
+  });
+  ul.innerHTML = li;
+  div.innerHTML = reset;
 };
 
 defaultView();
