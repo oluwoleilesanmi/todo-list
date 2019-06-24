@@ -1,35 +1,16 @@
 import { create } from "./js/project/create";
+import { uuid } from "./js/util/uuid";
+import { object } from "./js/todo/object";
 import * as td from "./js/todo/display";
 import * as pd from "./js/project/display";
 import * as te from "./js/todo/event";
 import * as ps from "./js/project/store";
-import { uuid } from "./js/util/uuid";
-import { todo } from "./js/todo/object";
 import * as tc from "./js/todo/create";
+import { format } from "date-fns";
 
 let database = ps.storage().store("project-todo");
 let pdatabase = ps.storage().store("project");
 let reset = "";
-
-const addTodoToDb = (
-  id,
-  title,
-  description,
-  dueDate,
-  priority,
-  projectName
-) => {
-  let index = 0,
-    todo = todo(
-      id,
-      title[index].value,
-      description[index].value,
-      dueDate[index].value,
-      priority[index].value,
-      false
-    );
-  database.storeTodo(projectName, todo);
-};
 
 let getInputData = () => {
   const id = document.getElementById("form").getAttribute("todo-id");
@@ -49,8 +30,21 @@ let getInputData = () => {
 const defaultView = () => {
   let projects = document.querySelector(".projects");
   let todos = document.querySelector(".todos");
-  projects.innerHTML = pd.display("test");
-  todos.innerHTML = td.display("test");
+  let arr = [
+    "default",
+    object(
+      null,
+      "starter",
+      "Hi enjoy the todo",
+      format(new Date(), "YYYY-MM-DD"),
+      "very high",
+      false
+    )
+  ];
+  pdatabase.push("default");
+  projects.innerHTML = pd.display(pdatabase[0]);
+  database.push(arr);
+  todos.innerHTML = td.display(arr[1]);
 };
 
 const findTodoIndex = e => {
@@ -115,6 +109,7 @@ const bindEditEvent = () => {
     });
   }
 };
+
 const toggleTodo = e => {
   let todo = findTodo(e);
   todo.done = !todo.done;

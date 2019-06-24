@@ -12,8 +12,7 @@ let display = (todo) => {
             <span>Priority: ${todo.priority}</span>
             <button class="delete-todo">Delete</button>
           </li>`
-}
- 
+};
 export { display }
 
   

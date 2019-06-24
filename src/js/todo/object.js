@@ -1,12 +1,12 @@
-const todo = (id, title, description, dueDate, priority) => {
+const object = (id, title, description, dueDate, priority, bol) => {
   return {
     id: id,
     title: title,
     description: description,
     dueDate: dueDate,
     priority: priority,
-    done: false
+    done: bol
   };
 };
 
-export {todo}
+export { object };

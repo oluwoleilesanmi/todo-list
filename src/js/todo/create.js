@@ -17,11 +17,11 @@ let create = (todo) => {
                 <label>Priority:</label>
                 <select id="priority">
                   <option value="1">Important</option>
-                  <option value="2">Sliglity Important</option>
+                  <option value="2">Slightly Important</option>
                   <option value="3">Not Important</option>
                 </select>
               </div>
               <button class="update">Update todo</button>
           </form>`
-}
+};
 export {create}
