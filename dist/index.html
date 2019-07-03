@@ -9,7 +9,25 @@
   </head>
 
   <body>
-    <div class="test">hello</div>
+    <div class="todo">
+      <form class="task-entry">
+        <input
+          class="task-input"
+          name="task"
+          type="text"
+          placeholder="Enter a task"
+        />
+        <label for="task">Completion date/time:</label>
+        <input
+          type="datetime-local"
+          value="2019-01-01T00:00"
+          class="datetime"
+          name="date"
+        />
+        <button class="submit">submit</button>
+      </form>
+      <ul class="task-list"></ul>
+    </div>
     <script src="./main.js"></script>
   </body>
 </html>
