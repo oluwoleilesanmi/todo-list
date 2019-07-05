@@ -8,15 +8,21 @@ let insert = (id, name, date) => {
 };
 
 let li = task => {
+  let checkChecked = "";
+  if (task.done) {
+    checkChecked = "checked";
+  }
   return (
     "" +
     '<li todo-id = "' +
     task.id +
     '">' +
-    '<input type="checkbox" />' +
+    '<input type="checkbox" class="toggle-task" ' +
+    checkChecked +
+    " />" +
     task.name +
     task.date +
-    '<button class="task-del">-</button>' +
+    '<button class="del-task">-</button>' +
     "</li>"
   );
 };
@@ -49,6 +55,12 @@ let deleteTask = function(el) {
   render();
 };
 
+let toggleTask = function(el) {
+  let task = findTask(el);
+  task.done = !task.done;
+  render();
+};
+
 let getTask = form => {
   let t = form.elements[0].value;
   let d = form.elements[1].value;
@@ -62,7 +74,11 @@ $(document).ready(function() {
     getTask(this);
   });
 
-  $(document).on("click", ".task-del", function(e) {
+  $(document).on("click", ".del-task", function(e) {
     deleteTask(this);
+  });
+
+  $(document).on("click", ".toggle-task", function(e) {
+    toggleTask(this);
   });
 });
