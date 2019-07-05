@@ -29,6 +29,26 @@ let render = () => {
   $(".task-list").html(str);
 };
 
+let findTask = e => {
+  var task,
+    id = $(e)
+      .parent()
+      .attr("todo-id");
+  allTasks.forEach(function(thisTask) {
+    if (thisTask.id == id) {
+      task = thisTask;
+    }
+  });
+  return task;
+};
+
+let deleteTask = function(el) {
+  var task = findTask(el),
+    taskIndex = allTasks.indexOf(task);
+  allTasks.splice(taskIndex, 1);
+  render();
+};
+
 let getTask = form => {
   let t = form.elements[0].value;
   let d = form.elements[1].value;
@@ -40,5 +60,9 @@ $(document).ready(function() {
   $("form.task-entry").submit(function(e) {
     e.preventDefault();
     getTask(this);
+  });
+
+  $(document).on("click", ".task-del", function(e) {
+    deleteTask(this);
   });
 });
