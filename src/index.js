@@ -1,5 +1,5 @@
 import "jquery";
-import { uuid } from "./js/util/uuid";
+import { uuid, message } from "./js/util/uuid";
 
 let allTasks = [];
 
@@ -66,10 +66,24 @@ let toggleTask = function(el) {
 };
 
 let getTask = form => {
-  let t = form.elements[0].value;
-  let d = form.elements[1].value;
-  insert(uuid(), t, d);
-  render();
+  let task = form.elements[0].value;
+  let date = form.elements[1].value;
+  if (!validateLen(task)) {
+    insert(uuid(), task, date);
+    render();
+    $(".task-input").val("");
+  }
+};
+
+let validateLen = str => {
+  let bol = false;
+  if (str.length > 40) {
+    $(".error-msg").html("string too long!");
+    $(".task-input").val("");
+    setTimeout(message, 2000);
+    bol = true;
+  }
+  return bol;
 };
 
 $(document).ready(function() {
