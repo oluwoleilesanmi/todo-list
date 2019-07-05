@@ -1,5 +1,7 @@
 import "jquery";
 import { uuid, message } from "./js/util/uuid";
+import "./css/styles.css";
+import "./css/reset.css";
 
 let allTasks = [];
 
