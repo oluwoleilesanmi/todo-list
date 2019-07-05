@@ -20,8 +20,12 @@ let li = task => {
     '<input type="checkbox" class="toggle-task" ' +
     checkChecked +
     " />" +
+    '<div class="name">' +
     task.name +
+    "</div>" +
+    '<div class="date">' +
     task.date +
+    "</div>" +
     '<button class="del-task">-</button>' +
     "</li>"
   );
