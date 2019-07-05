@@ -10,3 +10,5 @@
 - User can toggle task as read or unread :heavy_check_mark:
 
 ## Run
+
+run `npm run start:dev` in command-line then paste `http://localhost:9000/` in browser
