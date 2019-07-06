@@ -1,157 +1,104 @@
-import { create } from "./js/project/create";
-import { uuid } from "./js/util/uuid";
-import { object } from "./js/todo/object";
-import * as td from "./js/todo/display";
-import * as pd from "./js/project/display";
-import * as te from "./js/todo/event";
-import * as ps from "./js/project/store";
-import * as tc from "./js/todo/create";
-import { format } from "date-fns";
+import "jquery";
+import { uuid, message } from "./js/util/uuid";
+import "./css/styles.css";
+import "./css/reset.css";
 
-let database = ps.storage().store("project-todo");
-let pdatabase = ps.storage().store("project");
-let reset = "";
+let allTasks = [];
 
-let getInputData = () => {
-  const id = document.getElementById("form").getAttribute("todo-id");
-  const title = document.getElementById("title");
-  const description = document.getElementById("description");
-  const dueDate = document.getElementById("due");
-  const priority = document.getElementById("priority");
-  return {
-    id: id,
-    title: title,
-    description: description,
-    dueDate: dueDate,
-    priority: priority
-  };
+let insert = (id, name, date) => {
+  allTasks.push({ id: id, name: name, date: date, done: false });
 };
 
-const defaultView = () => {
-  let projects = document.querySelector(".projects");
-  let todos = document.querySelector(".todos");
-  let arr = [
-    "default",
-    object(
-      null,
-      "starter",
-      "Hi enjoy the todo",
-      format(new Date(), "YYYY-MM-DD"),
-      "very high",
-      false
-    )
-  ];
-  pdatabase.push("default");
-  projects.innerHTML = pd.display(pdatabase[0]);
-  database.push(arr);
-  todos.innerHTML = td.display(arr[1]);
-};
-
-const findTodoIndex = e => {
-  let id = e.target.parentNode.getAttribute("todo-id");
-  for (let i = 0, map; i < database.length; i++) {
-    map = database[i][1];
-    if (map.id === id) {
-      return i;
-    }
+let li = task => {
+  let checkChecked = "";
+  if (task.done) {
+    checkChecked = "checked";
   }
+  return (
+    "" +
+    '<li class="task" + todo-id = "' +
+    task.id +
+    '">' +
+    '<input type="checkbox" class="toggle-task" ' +
+    checkChecked +
+    " />" +
+    '<div class="name">' +
+    task.name +
+    "</div>" +
+    '<div class="date">' +
+    task.date +
+    "</div>" +
+    '<button class="del-task">-</button>' +
+    "</li>"
+  );
 };
 
-const deleteTodo = e => {
-  let todo = findTodoIndex(e),
-    todoIndex = database.indexOf(todo);
-  database.splice(todoIndex, 1);
-};
-
-const bindDelEvent = () => {
-  if (document.getElementsByClassName("delete-todo")) {
-    let arrButtons = document.getElementsByClassName("delete-todo");
-    Array.from(arrButtons).forEach(delButton => {
-      delButton.addEventListener("click", deleteTodo);
-    });
-  }
-};
-
-const bindToggleEvent = () => {
-  if (document.getElementsByClassName("toggle")) {
-    let arrToggle = document.getElementsByClassName("toggle");
-    Array.from(arrToggle).forEach(toggleBtn => {
-      toggleBtn.addEventListener("click", toggleTodo);
-    });
-  }
-};
-
-const bindEditEvent = () => {
-  if (document.getElementsByClassName("edit")) {
-    let arrEdit = document.getElementsByClassName("edit");
-    Array.from(arrEdit).forEach(edit => {
-      edit.addEventListener("dblclick", e => {
-        let todo = findTodo(e),
-          update = document.querySelector(".update"),
-          add = document.querySelector(".add");
-        add.innerHTML = tc.create(todo);
-
-        update.addEventListener("click", e => {
-          let liveData = getInputData();
-          todo = todo(
-            liveData.id,
-            liveData.title[index].value,
-            liveData.description[index].value,
-            liveData.dueDate[index].value,
-            liveData.priority[index].value,
-            false
-          );
-          let arr = database[findTodoIndex(e)];
-          arr[1] = todo;
-          database.splice(findTodoIndex(e), 1, arr);
-        });
-      });
-    });
-  }
-};
-
-const toggleTodo = e => {
-  let todo = findTodo(e);
-  todo.done = !todo.done;
-};
-
-const findTodo = e => {
-  let todo,
-    id = e.target.parentNode.getAttribute("todo-id");
-  for (let i = 0, map; i < database.length; i++) {
-    map = database[i][1];
-    if (map.id === id) {
-      todo = map;
-    }
-  }
-  return todo;
-};
-
-const listener = () => {
-  let btn = document.querySelector(".project"),
-    add = document.querySelector(".add");
-  btn.addEventListener("click", e => {
-    add.innerHTML = create();
-    let cbtn = document.querySelector(".create");
-    cbtn.addEventListener("click", e => {
-      let text = document.querySelector(".input").value;
-      pdatabase.push(text);
-      render(pdatabase, document.querySelector(".projects"), add);
-    });
+let render = () => {
+  let str = "";
+  allTasks.forEach(e => {
+    str += li(e);
   });
+  $(".task-list").html(str);
 };
 
-const render = (arr, ul, div) => {
-  let li = reset;
-  arr.forEach(e => {
-    li += pd.display(e);
+let findTask = e => {
+  var task,
+    id = $(e)
+      .parent()
+      .attr("todo-id");
+  allTasks.forEach(function(thisTask) {
+    if (thisTask.id == id) {
+      task = thisTask;
+    }
   });
-  ul.innerHTML = li;
-  div.innerHTML = reset;
+  return task;
 };
 
-defaultView();
-listener();
-te.listener();
-bindDelEvent();
-bindToggleEvent();
+let deleteTask = function(el) {
+  var task = findTask(el),
+    taskIndex = allTasks.indexOf(task);
+  allTasks.splice(taskIndex, 1);
+  render();
+};
+
+let toggleTask = function(el) {
+  let task = findTask(el);
+  task.done = !task.done;
+  render();
+};
+
+let getTask = form => {
+  let task = form.elements[0].value;
+  let date = form.elements[1].value;
+  if (!validateLen(task)) {
+    insert(uuid(), task, date);
+    render();
+    $(".task-input").val("");
+  }
+};
+
+let validateLen = str => {
+  let bol = false;
+  if (str.length > 40) {
+    $(".error-msg").html("string too long!");
+    $(".task-input").val("");
+    setTimeout(message, 2000);
+    bol = true;
+  }
+  return bol;
+};
+
+$(document).ready(function() {
+  $("form.task-entry").submit(function(e) {
+    e.preventDefault();
+    getTask(this);
+  });
+
+  $(document).on("click", ".del-task", function(e) {
+    deleteTask(this);
+  });
+
+  $(document).on("click", ".toggle-task", function(e) {
+    toggleTask(this);
+  });
+});

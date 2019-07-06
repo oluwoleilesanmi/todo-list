@@ -1,37 +1,30 @@
 <!DOCTYPE html>
 
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <title>Todo-list</title>
-  <link rel="stylesheet" type="text/css" href="./css/styles.css" />
-  <link rel="stylesheet" type="text/css" href="./css/reset.css" />
-</head>
-
-<body>
-  <button class="project">New Project</button>
-  <button class="todo">New Todo</button>
-
-  <!--Project Section-->
-  <div class="project-section">
-    <h3>Projects<h3>
-        <ul class="projects"></ul>
-  </div>
-
-  <!--Todo Section-->
-  <div class="todo-section">
-    <h3>Todos<h3>
-        <ul class="todos"></ul>
-  </div>
-
-  <!--Add Section-->
-  <div class="add-section">
-    <h3>Create<h3>
-        <div class="add"></div>
-  </div>
-
-  <script src="./main.js"></script>
-</body>
-
+  <head>
+    <meta charset="UTF-8" />
+    <title>Todo-list</title>
+  </head>
+  <body>
+    <div class="task-container">
+      <form class="task-entry">
+        <input
+          class="task-input"
+          name="task"
+          type="text"
+          placeholder="Text-input && end-date  >>>"
+        />
+        <input
+          type="datetime-local"
+          value="2019-01-01T00:00"
+          class="datetime"
+          name="date"
+        />
+        <button class="task-submit">+</button>
+      </form>
+      <div class="error-msg"></div>
+      <ul class="task-list"></ul>
+    </div>
+    <script src="./main.js"></script>
+  </body>
 </html>

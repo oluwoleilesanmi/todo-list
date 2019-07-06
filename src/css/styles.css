@@ -1,0 +1,105 @@
+div.name {
+  display: inline-block;
+}
+.task-input {
+  width: 300px;
+}
+.datetime {
+  width: 200px;
+}
+.task-input:focus {
+  border-color: #3074b9;
+}
+div.date {
+  display: inline-block;
+  width: 200px;
+  text-align: center;
+  float: right;
+}
+.task-submit:focus,
+.task-submit:hover {
+  background-color: #4d8dce;
+}
+.task-submit:active {
+  box-shadow: inset 2px 2px 4px #1d2c3c;
+}
+.task-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: #f3f8fd;
+  color: #374e65;
+}
+.task-container {
+  margin: 20px auto;
+  width: 750px;
+}
+.task-entry {
+  overflow: hidden;
+}
+.datetime,
+.task-input {
+  float: left;
+  background: transparent;
+  color: #374e65;
+  font-size: 14px;
+  height: 40px;
+  border-bottom: 1px solid #aab1b9;
+  outline: none;
+  box-sizing: border-box;
+}
+.task-submit {
+  float: left;
+  font-size: 14px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: #3074b9;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+}
+.task {
+  position: relative;
+  padding-right: 30px;
+  padding-left: 30px;
+  border-bottom: 1px solid #d2dfec;
+  background: #fff;
+  padding-top: 12px;
+  padding-bottom: 10px;
+  width: 540px;
+}
+.toggle-task {
+  text-decoration: line-through;
+  color: #bfc7d0;
+}
+.toggle-task {
+  position: absolute;
+  left: 5px;
+  top: 10px;
+}
+.del-task {
+  position: absolute;
+  display: none;
+  right: 5px;
+  top: 10px;
+  color: #fff;
+  border: none;
+  background-color: #b3a1a1;
+  cursor: pointer;
+  outline: none;
+}
+.del-task:hover {
+  background-color: #b51b1b;
+}
+.del-task:active {
+  box-shadow: inset 2px 2px 4px #560808;
+}
+.task:hover,
+.del-task {
+  display: block;
+}
