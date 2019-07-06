@@ -16,7 +16,7 @@ let li = task => {
   }
   return (
     "" +
-    '<li todo-id = "' +
+    '<li class="task" + todo-id = "' +
     task.id +
     '">' +
     '<input type="checkbox" class="toggle-task" ' +
