@@ -1,4 +1,4 @@
 [build]
-base = "TODO-LIST/"
-publish = "TODO-LIST/build/"
+base = "/build"
+publish = "build/index.html"
 command = "npm run build"
