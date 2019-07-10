@@ -6,7 +6,7 @@ module.exports = {
   entry: "./src/index.js",
   output: {
     filename: "main.js",
-    path: path.resolve(__dirname, "build")
+    path: path.resolve(__dirname, "dist/build")
   },
   module: {
     rules: [
@@ -17,7 +17,7 @@ module.exports = {
     ]
   },
   devServer: {
-    contentBase: path.join(__dirname, "build"),
+    contentBase: path.join(__dirname, "dist/build"),
     watchContentBase: true,
     port: 9000
   },
