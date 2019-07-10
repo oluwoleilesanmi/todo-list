@@ -1,3 +1,8 @@
+[build]
+base = "myapp/"
+publish = "myapp/build/"
+command = "yarn build"
+
 [[redirects]]
 from = "/*"
 to = "/index.html"
